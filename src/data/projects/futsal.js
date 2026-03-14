@@ -4,7 +4,7 @@ export const futsalProject = {
   title: "Automated Futsal Video Analysis for Performance Reporting",
   description:
     "Developed an end-to-end computer vision pipeline that automatically analyzes futsal matches through multi-stage processing: frame classification, player detection, multi-object tracking, and action recognition. The system extracts tactical insights from broadcast video in real-time, reducing manual annotation time by 80%.",
-  image: "/assets/img/projects/SportScore.gif",
+  image: "assets/img/projects/SportScore.gif",
   tags: ["YOLOv11", "DeepSORT", "Computer Vision", "Sports Analytics"],
   link: "/projects/1-futsal-analysis-sportscore",
   github: "https://github.com/MehdiHCH",
@@ -129,12 +129,12 @@ export const futsalProject = {
     {
       title: "Real-time Analysis Dashboard",
       description: "Complete system running on FIFA Futsal World Cup match with synchronized multi-window visualization",
-      image: "/assets/img/projects/MVP.png",
+      image: "assets/img/projects/MVP.png",
     },
     {
       title: "Player Tracking & Detection",
       description: "Real-time multi-player tracking with jersey number recognition and ball trajectory prediction",
-      image: "/assets/img/projects/SportScore.gif",
+      image: "assets/img/projects/SportScore.gif",
     },
   ],
   team: ["Hicham El Mehdi"],
@@ -143,21 +143,21 @@ export const futsalProject = {
     {
       id: 1,
       title: "Action Detection",
-      video: "/assets/videos/sportscore/Action_detection.mp4",
+      video: "assets/videos/sportscore/Action_detection.mp4",
       description: "Real-time detection of player actions (passes, shots, dribbles) with multi-player tracking",
       category: "Sports Analytics",
     },
     {
       id: 2,
       title: "Frame Classification",
-      video: "/assets/videos/sportscore/Class.mp4",
+      video: "assets/videos/sportscore/Class.mp4",
       description: "Automatic frame classification and ball tracking with 99.95% accuracy",
       category: "Detection",
     },
     {
       id: 3,
       title: "Object Detection & Goal Recognition",
-      video: "/assets/videos/sportscore/IS_But.mp4",
+      video: "assets/videos/sportscore/IS_But.mp4",
       description: "Advanced ball detection and goal confirmation using fine-tuned YOLOv11x. The system validates goals through homography-based spatial projection, ensuring the ball crosses the goal line with proper possession tracking. Assists are automatically attributed based on preceding key passes.",
       category: "Detection",
     },

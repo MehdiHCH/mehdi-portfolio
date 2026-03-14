@@ -4,7 +4,7 @@ export const azulProject = {
   title: "Azul OCR - Tifinagh Handwritten Character Recognition",
   description:
     "Innovative hybrid OCR system designed to preserve and digitize Amazigh cultural heritage by recognizing handwritten Tifinagh script. The system combines Tesseract OCR, PaddleOCR, and custom CNN architectures to handle character, word, and sentence-level recognition with high accuracy.",
-  image: "/assets/img/projects/azul_interface.jpeg",
+  image: "assets/img/projects/azul_interface.jpeg",
   tags: ["OCR", "Tifinagh", "CNN", "PaddleOCR", "Cultural Heritage"],
   link: "/projects/3-azul-ocr",
   github:
@@ -124,12 +124,12 @@ export const azulProject = {
     {
       title: "Azul OCR User Interface",
       description: "Intuitive interface for Tifinagh character and sentence recognition",
-      image: "/assets/img/projects/azul_interface.jpeg",
+      image: "assets/img/projects/azul_interface.jpeg",
     },
     {
       title: "Tifinagh Character Recognition System",
       description: "Complete workflow for handwritten character recognition with 94.2% accuracy",
-      image: "/assets/img/projects/azul.jpeg",
+      image: "assets/img/projects/azul.jpeg",
     },
   ],
   challenges: {
@@ -160,7 +160,7 @@ export const azulProject = {
     {
       id: 1,
       title: "Tifinagh Character Recognition",
-      video: "/assets/videos/azul_ocr_demo.mp4",
+      video: "assets/videos/azul_ocr_demo.mp4",
       description: "Real-time OCR for Tifinagh handwritten character and sentence recognition with 94.2% accuracy",
       category: "OCR",
     },

@@ -4,7 +4,7 @@ export const e2eProject = {
   title: "E2E-Spot - Temporal Event Detection in Sports Videos",
   description:
     "End-to-end architecture for frame-precise temporal event detection in futsal videos. The system automatically localizes key player actions (passes, dribbles, shots) at 1-second precision using efficient visual feature extraction combined with bidirectional temporal modeling on 40GB of 2024 FIFA Futsal World Cup footage.",
-  image: "/assets/img/projects/e2e_spot_architecture.jpg",
+  image: "assets/img/projects/e2e_spot_architecture.jpg",
   tags: ["RegNet-Y", "Action Spotting", "Deep Learning", "Temporal Detection"],
   link: "/projects/2-e2e-spotting",
   github:
@@ -98,17 +98,17 @@ export const e2eProject = {
     {
       title: "RegNet-Y Architecture with Gate Shift Modules",
       description: "Efficient feature extraction with local temporal modeling",
-      image: "/assets/img/projects/gsm.png",
+      image: "assets/img/projects/gsm.png",
     },
     {
       title: "Bidirectional GRU Temporal Reasoning",
       description: "Global temporal context modeling for frame-wise classification",
-      image: "/assets/img/projects/gru.png",
+      image: "assets/img/projects/gru.png",
     },
     {
       title: "E2E-Spot Pipeline Architecture",
       description: "End-to-end temporal event detection framework",
-      image: "/assets/img/projects/e2e_spot_architecture.jpg",
+      image: "assets/img/projects/e2e_spot_architecture.jpg",
     },
   ],
   challenges: {
@@ -131,7 +131,7 @@ export const e2eProject = {
     {
       id: 1,
       title: "Temporal Event Detection",
-      video: "/assets/videos/E2E_spot.mp4",
+      video: "assets/videos/E2E_spot.mp4",
       description: "Frame-level temporal event detection with RegNet-Y and Bi-GRU for action spotting at ±1 second precision",
       category: "Temporal Analysis",
     },
