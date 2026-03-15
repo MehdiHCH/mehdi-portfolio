@@ -1,69 +1,8 @@
-import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, ExternalLink, Github, Users } from "lucide-react";
 import { getProjectBySlug } from "@/data/projectsData";
-import { Button } from "@/components/Button";
 import { DemosSection } from "@/components/DemosSection";
-import { useEffect, useRef } from "react";
-
-// Mermaid diagram renderer
-const MermaidDiagram = ({ chart }) => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (!chart || !ref.current) return;
-
-    const renderDiagram = async () => {
-      try {
-        // Dynamically import mermaid
-        const mermaid = (await import("mermaid")).default;
-        mermaid.initialize({
-          startOnLoad: false,
-          theme: "dark",
-          themeVariables: {
-            primaryColor: "#6366f1",
-            primaryTextColor: "#e2e8f0",
-            primaryBorderColor: "#6366f1",
-            lineColor: "#6366f1",
-            secondaryColor: "#1e293b",
-            tertiaryColor: "#0f172a",
-            background: "#0f172a",
-            mainBkg: "#1e293b",
-            nodeBorder: "#6366f1",
-            clusterBkg: "#1e293b",
-            titleColor: "#e2e8f0",
-            edgeLabelBackground: "#1e293b",
-            attributeBackgroundColorEven: "#1e293b",
-            attributeBackgroundColorOdd: "#0f172a",
-          },
-          flowchart: {
-            curve: "basis",
-            padding: 20,
-          },
-        });
-
-        const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
-        const { svg } = await mermaid.render(id, chart);
-        if (ref.current) {
-          ref.current.innerHTML = svg;
-        }
-      } catch (err) {
-        console.error("Mermaid render error:", err);
-        if (ref.current) {
-          ref.current.innerHTML = `<pre class="text-xs text-muted-foreground p-4 overflow-auto">${chart}</pre>`;
-        }
-      }
-    };
-
-    renderDiagram();
-  }, [chart]);
-
-  return (
-    <div
-      ref={ref}
-      className="w-full overflow-x-auto flex justify-center items-center min-h-[120px]"
-    />
-  );
-};
 
 // Overview section: handles both old string format and new object format
 const OverviewSection = ({ overview }) => {
@@ -79,19 +18,23 @@ const OverviewSection = ({ overview }) => {
     );
   }
 
-  // New format: overview is { architecture, keyContributions }
+  // New format: overview is { architectureImage, keyContributions }
   return (
     <section className="space-y-8">
       <h2 className="text-3xl font-bold">Overview</h2>
 
-      {/* System Architecture Diagram */}
-      {overview.architecture && (
+      {/* System Architecture Image */}
+      {overview.architectureImage && (
         <div className="space-y-3">
           <h3 className="text-lg font-semibold text-primary uppercase tracking-wider">
             System Architecture
           </h3>
           <div className="glass p-6 rounded-2xl border border-border/50 overflow-hidden">
-            <MermaidDiagram chart={overview.architecture} />
+            <img
+              src={`${import.meta.env.BASE_URL}${overview.architectureImage}`}
+              alt="System Architecture"
+              className="w-full h-auto rounded-xl object-contain"
+            />
           </div>
         </div>
       )}
@@ -128,6 +71,12 @@ const OverviewSection = ({ overview }) => {
 export const ProjectDetail = () => {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   if (!project) {
     return (
@@ -137,13 +86,22 @@ export const ProjectDetail = () => {
           <p className="text-muted-foreground">
             The project you're looking for doesn't exist.
           </p>
-          <Link
-            to="/projects"
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/");
+              setTimeout(() => {
+                const section = document.getElementById("projects");
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth" });
+                }
+              }, 100);
+            }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg glass hover:bg-primary/10"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Projects
-          </Link>
+          </button>
         </div>
       </div>
     );
@@ -153,13 +111,29 @@ export const ProjectDetail = () => {
     <div className="min-h-screen overflow-hidden pt-32 pb-20">
       <div className="container mx-auto px-6 relative z-10">
         {/* Back Button */}
-        <Link
-          to="/projects"
+        <button
+          type="button"
+          onClick={() => {
+            if (location.pathname !== "/") {
+              navigate("/");
+              setTimeout(() => {
+                const section = document.getElementById("projects");
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth" });
+                }
+              }, 100);
+            } else {
+              const section = document.getElementById("projects");
+              if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+              }
+            }
+          }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg glass hover:bg-primary/10 hover:text-primary transition-all mb-8"
         >
           <ArrowLeft className="w-5 h-5" />
           Back to Projects
-        </Link>
+        </button>
 
         {/* Header */}
         <div className="max-w-6xl space-y-6 mb-12">
@@ -194,12 +168,12 @@ export const ProjectDetail = () => {
             )}
           </div>
 
-          {/* Project Image */}
+          {/* Project Image (full image, no empty frame) */}
           <div className="glass rounded-2xl overflow-hidden glow-border">
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-96 object-cover"
+              className="w-full h-auto"
             />
           </div>
 
@@ -232,7 +206,7 @@ export const ProjectDetail = () => {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-12">
 
-            {/* Overview — handles string or object */}
+            {/* Overview */}
             {project.overview && (
               <OverviewSection overview={project.overview} />
             )}
@@ -353,6 +327,41 @@ export const ProjectDetail = () => {
               </section>
             )}
 
+            {/* Visualizations */}
+            {project.visualizations && project.visualizations.length > 0 && (
+              <section className="space-y-4">
+                <h2 className="text-3xl font-bold mb-4">Visualizations</h2>
+                <div className="grid gap-6">
+                  {project.visualizations.map((viz, idx) => (
+                    <div
+                      key={idx}
+                      className="glass rounded-2xl overflow-hidden border border-border/50"
+                    >
+                      <img
+                        src={viz.image}
+                        alt={viz.title}
+                        className="w-full h-auto"
+                      />
+                      {(viz.title || viz.description) && (
+                        <div className="p-4 space-y-1">
+                          {viz.title && (
+                            <h3 className="text-lg font-semibold">
+                              {viz.title}
+                            </h3>
+                          )}
+                          {viz.description && (
+                            <p className="text-sm text-muted-foreground">
+                              {viz.description}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* Challenges */}
             {project.challenges && (
               <section className="space-y-4">
@@ -392,30 +401,20 @@ export const ProjectDetail = () => {
                 <div className="glass p-6 rounded-2xl border border-border/50">
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
-                        Name
-                      </p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Name</p>
                       <p className="font-semibold">{project.dataset.name}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
-                        Source
-                      </p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Source</p>
                       <p className="font-semibold">{project.dataset.source}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
-                        Volume
-                      </p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Volume</p>
                       <p className="font-semibold">{project.dataset.volume}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
-                        Annotation
-                      </p>
-                      <p className="font-semibold text-sm">
-                        {project.dataset.annotation}
-                      </p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Annotation</p>
+                      <p className="font-semibold text-sm">{project.dataset.annotation}</p>
                     </div>
                   </div>
                   {project.dataset.classes && (
@@ -428,9 +427,7 @@ export const ProjectDetail = () => {
                             className="flex justify-between text-sm text-muted-foreground"
                           >
                             <span>{cls.name} ({cls.label})</span>
-                            <span className="text-primary font-semibold">
-                              {cls.distribution}
-                            </span>
+                            <span className="text-primary font-semibold">{cls.distribution}</span>
                           </div>
                         ))}
                       </div>
@@ -443,7 +440,6 @@ export const ProjectDetail = () => {
 
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
-            {/* Tech Stack */}
             <div className="glass p-6 rounded-2xl space-y-4">
               <h3 className="text-xl font-bold">Tech Stack</h3>
               <div className="flex flex-wrap gap-2">
@@ -458,7 +454,6 @@ export const ProjectDetail = () => {
               </div>
             </div>
 
-            {/* Tags */}
             {project.tags && (
               <div className="glass p-6 rounded-2xl space-y-4 border border-border/50">
                 <h4 className="font-bold">Categories</h4>
@@ -475,7 +470,6 @@ export const ProjectDetail = () => {
               </div>
             )}
 
-            {/* Team */}
             {(project.team || project.supervisor) && (
               <div className="glass p-6 rounded-2xl space-y-4 border border-border/50">
                 <h4 className="font-bold flex items-center gap-2">
@@ -497,9 +491,7 @@ export const ProjectDetail = () => {
                 {project.supervisor && (
                   <div className="space-y-2 pt-4 border-t border-border/50">
                     <p className="text-sm font-semibold text-primary">Supervisor:</p>
-                    <p className="text-sm text-muted-foreground">
-                      {project.supervisor}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{project.supervisor}</p>
                   </div>
                 )}
               </div>
@@ -514,9 +506,25 @@ export const ProjectDetail = () => {
         <div className="border-t border-border/50 pt-12">
           <h2 className="text-3xl font-bold mb-8">Explore More Projects</h2>
           <div className="grid grid-cols-1 gap-6">
-            <Link
-              to="/projects"
-              className="group glass p-6 rounded-2xl hover:border-primary/50 transition-all"
+            <button
+              type="button"
+              onClick={() => {
+                if (location.pathname !== "/") {
+                  navigate("/");
+                  setTimeout(() => {
+                    const section = document.getElementById("projects");
+                    if (section) {
+                      section.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }, 100);
+                } else {
+                  const section = document.getElementById("projects");
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
+              className="group glass p-6 rounded-2xl hover:border-primary/50 transition-all text-left w-full"
             >
               <div className="flex items-center justify-between">
                 <span className="font-semibold group-hover:text-primary transition-colors">
@@ -524,7 +532,7 @@ export const ProjectDetail = () => {
                 </span>
                 <ExternalLink className="w-5 h-5 group-hover:text-primary transition-colors" />
               </div>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

@@ -7,19 +7,13 @@ export const e2eProject = {
   image: "assets/img/projects/e2e_spot_architecture.jpg",
   tags: ["RegNet-Y", "Action Spotting", "Deep Learning", "Temporal Detection"],
   link: "/projects/2-e2e-spotting",
-  github:
-    "https://github.com/MehdiHCH/End-to-End-Temporal-Event-Spotting-in-Videos",
+  github: "https://github.com/MehdiHCH/End-to-End-Temporal-Event-Spotting-in-Videos",
   company: "Université Ibn Tofail - Laboratoire SETIME",
   period: "October 2024 — January 2025",
   location: "Kenitra, Morocco",
   role: "Engineering Intern",
   overview: {
-    architecture: `flowchart LR
-    A([Video Frames]) --> B[RegNet-Y CNN\\nFeature Extraction]
-    B --> C[Gate Shift Modules\\nLocal Temporal Modeling]
-    C --> D[Bidirectional GRU\\nGlobal Temporal Reasoning]
-    D --> E[Frame-wise\\nPredictions]
-    E --> F([Action Spotting\\n±1s Precision])`,
+    architectureImage: "assets/img/projects/architecture/e2e_architecture.png",
     keyContributions: [
       "Designed a RegNet-Y backbone augmented with Gate Shift Modules (GSM) for efficient local temporal modeling — capturing motion patterns without the computational cost of 3D convolutions.",
       "Implemented a Bidirectional GRU on top of extracted features to model both past and future context simultaneously, enabling precise frame-level action localization at ±1-second accuracy.",
@@ -54,21 +48,14 @@ export const e2eProject = {
     "Lightweight architecture: 2.5x fewer parameters than ResNet-50",
   ],
   techStack: [
-    "Python",
-    "PyTorch",
-    "RegNet-Y",
-    "Gate Shift Modules",
-    "Bi-GRU",
-    "OpenCV",
-    "GPU (RTX 4060)",
-    "TensorFlow",
+    "Python", "PyTorch", "RegNet-Y", "Gate Shift Modules",
+    "Bi-GRU", "OpenCV", "GPU (RTX 4060)", "TensorFlow",
   ],
   modules: [
     {
       id: 1,
       name: "Feature Extraction (Module F)",
-      description:
-        "RegNet-Y with Gate Shift Modules for efficient visual feature extraction",
+      description: "RegNet-Y with Gate Shift Modules for efficient visual feature extraction",
       metrics: {
         model: "RegNet-Y + GSM",
         parameters: "10M (vs 25M ResNet-50)",

@@ -4,25 +4,16 @@ export const azulProject = {
   title: "Azul OCR - Tifinagh Handwritten Character Recognition",
   description:
     "Innovative hybrid OCR system designed to preserve and digitize Amazigh cultural heritage by recognizing handwritten Tifinagh script. The system combines Tesseract OCR, PaddleOCR, and custom CNN architectures to handle character, word, and sentence-level recognition with high accuracy.",
-  image: "assets/img/projects/azul_interface.jpeg",
+  image: "assets/img/projects/azul.jpeg",
   tags: ["OCR", "Tifinagh", "CNN", "PaddleOCR", "Cultural Heritage"],
   link: "/projects/3-azul-ocr",
-  github:
-    "https://github.com/MehdiHCH/Tesseract-OCR--Handwritten-Tifinagh-Character-Recognition",
+  github: "https://github.com/MehdiHCH/Tesseract-OCR--Handwritten-Tifinagh-Character-Recognition",
   company: "Ibn Tofail University",
   period: "October 2024 — February 2025",
   location: "Kenitra, Morocco",
   role: "Academic Project",
   overview: {
-  architecture: `flowchart LR
-    A([Handwritten Image]) --> B[Preprocessing<br/>Otsu Thresholding]
-    B --> C1[CNN<br/>Character-level]
-    B --> C2[Tesseract OCR<br/>Word-level]
-    B --> C3[PaddleOCR<br/>Sentence-level]
-    C1 --> D[Prediction Fusion]
-    C2 --> D
-    C3 --> D
-    D --> E([Multi-format Export<br/>TXT · JSON · CSV])`,
+    architectureImage: "assets/img/projects/architecture/azul_architecture.png",
     keyContributions: [
       "Built a custom 6-layer CNN from scratch, trained on all 33 Tifinagh characters, achieving 94.2% character-level recognition accuracy.",
       "Fine-tuned Tesseract OCR on the AMHCD (Amazigh Handwritten Character Dataset) in collaboration with IRCAM, optimizing it specifically for Amazigh word-level recognition.",
@@ -61,17 +52,9 @@ export const azulProject = {
     "Multi-format export: TXT, JSON, CSV",
   ],
   techStack: [
-    "TensorFlow",
-    "Keras",
-    "PyTorch",
-    "Tesseract 4.0",
-    "PaddleOCR",
-    "OpenCV",
-    "scikit-image",
-    "React.js",
-    "Flask",
-    "FastAPI",
-    "Docker",
+    "TensorFlow", "Keras", "PyTorch", "Tesseract 4.0",
+    "PaddleOCR", "OpenCV", "scikit-image", "React.js",
+    "Flask", "FastAPI", "Docker",
   ],
   modules: [
     {
@@ -124,19 +107,18 @@ export const azulProject = {
     {
       title: "Azul OCR User Interface",
       description: "Intuitive interface for Tifinagh character and sentence recognition",
-      image: "assets/img/projects/azul_interface.jpeg",
+      image: "assets/img/projects/azul.jpeg",
     },
     {
       title: "Tifinagh Character Recognition System",
       description: "Complete workflow for handwritten character recognition with 94.2% accuracy",
-      image: "assets/img/projects/azul.jpeg",
+      image: "assets/img/projects/azul_interface.jpeg",
     },
   ],
   challenges: {
     writingVariability: {
       problem: "Great diversity of writing styles",
-      solution:
-        "Intensive augmentation (×5), hybrid model, fine-tuning on real data",
+      solution: "Intensive augmentation (×5), hybrid model, fine-tuning on real data",
     },
     limitedDataset: {
       problem: "Few annotated Tifinagh data available",
@@ -144,16 +126,12 @@ export const azulProject = {
     },
     sentenceRecognition: {
       problem: "Difficult word segmentation",
-      solution:
-        "PaddleOCR detection, post-processing with linguistic rules, contextual correction",
+      solution: "PaddleOCR detection, post-processing with linguistic rules, contextual correction",
     },
   },
   team: [
-    "Rima Daqch",
-    "Adil Eddarif",
-    "Brahim El Aboudi",
-    "El Mehdi Hicham",
-    "Zineb Lahraoui",
+    "Rima Daqch", "Adil Eddarif", "Brahim El Aboudi",
+    "El Mehdi Hicham", "Zineb Lahraoui",
   ],
   supervisor: "Prof. Khadija Lekdioui",
   demos: [

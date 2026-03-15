@@ -13,13 +13,7 @@ export const futsalProject = {
   location: "Paris, France - Remote",
   role: "R&D Engineer Intern",
   overview: {
-    architecture: `flowchart LR
-    A([Video Input]) --> B[Frame Classification\\nYOLOv11m-cls]
-    B --> C[Player Detection\\nYOLOv11x]
-    C --> D[Multi-Object Tracking\\nDeepSORT + OCR]
-    D --> E[Homography\\nProjection]
-    E --> F[Action Recognition\\n7+ Types]
-    F --> G([Automated Reports\\nHeatmaps · JSON · CSV])`,
+    architectureImage: "assets/img/projects/architecture/futsal_architecture.png",
     keyContributions: [
       "Engineered a multi-stream CUDA pipeline with 5 parallel inference streams, achieving 13 FPS throughput — a 117% speedup over the sequential baseline.",
       "Designed two YOLOv11 variants: a classification model (YOLOv11m-cls) for frame filtering at 99.95% accuracy across 67,801 frames, and a detection model (YOLOv11x) for ball localization at 90.1% precision.",
@@ -56,25 +50,15 @@ export const futsalProject = {
     "Collected and annotated 5000+ frames using CVAT for training data",
   ],
   techStack: [
-    "Python",
-    "PyTorch",
-    "YOLOv11",
-    "DeepSORT",
-    "OpenCV",
-    "CUDA",
-    "TensorRT",
-    "Pandas",
-    "NumPy",
-    "FFmpeg",
+    "Python", "PyTorch", "YOLOv11", "DeepSORT", "OpenCV",
+    "CUDA", "TensorRT", "Pandas", "NumPy", "FFmpeg",
   ],
   modules: [
     {
       id: 1,
       name: "Frame Classification (Module 1)",
-      description:
-        "Complete automated analysis using YOLOv11m-cls to filter relevant gameplay frames and discard replays, transitions, and non-gameplay sequences.",
-      details:
-        "Intelligent filtering reduces processing time by 20% while maintaining 99.95% accuracy. Trained on 67,801 frames with only 6 false positives.",
+      description: "Complete automated analysis using YOLOv11m-cls to filter relevant gameplay frames and discard replays, transitions, and non-gameplay sequences.",
+      details: "Intelligent filtering reduces processing time by 20% while maintaining 99.95% accuracy. Trained on 67,801 frames with only 6 false positives.",
       metrics: {
         accuracy: "99.95%",
         improvement: "20% Faster",
@@ -87,10 +71,8 @@ export const futsalProject = {
     {
       id: 2,
       name: "Action Detection & Classification (Modules 2-6)",
-      description:
-        "Real-time detection and classification of 11 types of player actions including passes, shots, dribbles, and interceptions using DeepSORT tracking.",
-      details:
-        "System uses DeepSORT to maintain player identity and spatio-temporal rules for accurate action attribution. Pose estimation with 17 keypoints for movement analysis.",
+      description: "Real-time detection and classification of 11 types of player actions including passes, shots, dribbles, and interceptions using DeepSORT tracking.",
+      details: "System uses DeepSORT to maintain player identity and spatio-temporal rules for accurate action attribution. Pose estimation with 17 keypoints for movement analysis.",
       metrics: {
         actionsDetected: "11 Types",
         tracking: "DeepSORT with Re-ID",
@@ -103,10 +85,8 @@ export const futsalProject = {
     {
       id: 3,
       name: "Object Detection & Goal Recognition (Module 3)",
-      description:
-        "Advanced ball detection and goal confirmation using fine-tuned YOLOv11x with homography-based spatial projection.",
-      details:
-        "System validates goals through zone-based spatial projection, ensuring accuracy. Assists are automatically attributed based on preceding key passes.",
+      description: "Advanced ball detection and goal confirmation using fine-tuned YOLOv11x with homography-based spatial projection.",
+      details: "System validates goals through zone-based spatial projection, ensuring accuracy. Assists are automatically attributed based on preceding key passes.",
       metrics: {
         precision: "90.1%",
         validation: "Zone-based",
@@ -130,11 +110,6 @@ export const futsalProject = {
       title: "Real-time Analysis Dashboard",
       description: "Complete system running on FIFA Futsal World Cup match with synchronized multi-window visualization",
       image: "assets/img/projects/MVP.png",
-    },
-    {
-      title: "Player Tracking & Detection",
-      description: "Real-time multi-player tracking with jersey number recognition and ball trajectory prediction",
-      image: "assets/img/projects/SportScore.gif",
     },
   ],
   team: ["Hicham El Mehdi"],

@@ -1,9 +1,10 @@
 import { Github, Linkedin, Twitter, Heart } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/MehdiHCH", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/elmehdihicham", label: "LinkedIn" },
-  { icon: Twitter, href: "mailto:mehdihicham736@gmail.com", label: "Email" },
+  { icon: Twitter, href: "https://x.com/Mehdi_Hch_____", label: "Twitter / X" },
 ];
 
 const footerLinks = [
@@ -15,6 +16,29 @@ const footerLinks = [
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavigation = (href) => {
+    if (href.startsWith("#")) {
+      const sectionId = href.substring(1);
+
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+  };
 
   return (
     <footer className="py-12 border-t border-border">
@@ -22,9 +46,20 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">
-            <a href="#" className="text-xl font-bold tracking-tight">
+            <button
+              type="button"
+              onClick={() => {
+                if (location.pathname !== "/") {
+                  navigate("/");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
+              className="text-xl font-bold tracking-tight hover:text-primary transition-colors"
+            >
               EL<span className="text-primary">.</span>MEHDI
-            </a>
+            </button>
             <p className="text-sm text-muted-foreground mt-2">
               © {currentYear} EL MEHDI Hicham. All rights reserved.
             </p>
@@ -33,13 +68,14 @@ export const Footer = () => {
           {/* Links */}
           <nav className="flex flex-wrap justify-center gap-6">
             {footerLinks.map((link) => (
-              <a
+              <button
                 key={link.href}
-                href={link.href}
+                type="button"
+                onClick={() => handleNavigation(link.href)}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
           </nav>
 

@@ -13,11 +13,7 @@ export const diabeticProject = {
   location: "Kenitra, Morocco",
   role: "Academic Project",
   overview: {
-    architecture: `flowchart LR
-    A([Retinal Image]) --> B[Preprocessing\\nGaussian Filter · 224×224]
-    B --> C[EfficientNetB0\\nFeature Extraction]
-    C --> D[Classification Head\\nDropout + Dense]
-    D --> E([Disease Stage Prediction\\n5 Severity Classes])`,
+    architectureImage: "assets/img/projects/architecture/diabetic_architecture.png",
     keyContributions: [
       "Implemented transfer learning from a pre-trained ImageNet EfficientNetB0 backbone, freezing base layers and attaching a lightweight classification head tailored for 5-class retinopathy staging.",
       "Designed a targeted data augmentation strategy (zoom ±20%, shifts ±20%, rotation ±15°) applied preferentially to minority classes, directly mitigating the severe class imbalance of the APTOS 2019 dataset.",
@@ -54,15 +50,8 @@ export const diabeticProject = {
     "Analyzed on APTOS 2019 dataset (3,662 images)",
   ],
   techStack: [
-    "TensorFlow 2.0",
-    "Keras",
-    "EfficientNetB0",
-    "OpenCV",
-    "NumPy",
-    "Pandas",
-    "Matplotlib",
-    "Seaborn",
-    "NVIDIA RTX 4060",
+    "TensorFlow 2.0", "Keras", "EfficientNetB0", "OpenCV",
+    "NumPy", "Pandas", "Matplotlib", "Seaborn", "NVIDIA RTX 4060",
   ],
   modules: [
     {
@@ -146,25 +135,20 @@ export const diabeticProject = {
   challenges: {
     classImbalance: {
       problem: "Underrepresented classes (Proliferate_DR: 8%)",
-      solution:
-        "Weighted loss, aggressive augmentation for minorities, SMOTE",
+      solution: "Weighted loss, aggressive augmentation for minorities, SMOTE",
     },
     overfitting: {
       problem: "Gap between training and validation",
-      solution:
-        "Dropout layers, intensive augmentation, early stopping, L2 regularization",
+      solution: "Dropout layers, intensive augmentation, early stopping, L2 regularization",
     },
     imageQuality: {
       problem: "Lighting variations, resolution, noise",
-      solution:
-        "Gaussian filtering, systematic normalization, quality-simulating augmentation",
+      solution: "Gaussian filtering, systematic normalization, quality-simulating augmentation",
     },
   },
   team: [
-    "Abdelrhafour EL MOUSSAOUI",
-    "Mouad AOUTIR",
-    "El Mehdi HICHAM",
-    "Mohammed Imrane GRICH",
+    "Abdelrhafour EL MOUSSAOUI", "Mouad AOUTIR",
+    "El Mehdi HICHAM", "Mohammed Imrane GRICH",
   ],
   supervisor: "Pr. Souad EDDAROUICH",
   demos: [],

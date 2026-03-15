@@ -41,7 +41,7 @@ export const Hero = () => {
       {/* Bg */}
       <div className="absolute inset-0">
         <img
-          src="src={`${import.meta.env.BASE_URL}hero-bg.jpg`}"
+          src={`${import.meta.env.BASE_URL}hero-bg.jpg`}
           alt="Hero image"
           className="w-full h-full object-cover opacity-40"
         />
@@ -115,7 +115,7 @@ export const Hero = () => {
               <AnimatedBorderButton
                 onClick={() => {
                   const link = document.createElement("a");
-                  link.href = "href={`${import.meta.env.BASE_URL}CV.pdf`}";
+                  link.href = `${import.meta.env.BASE_URL}CV.pdf`;
                   link.download = "EL_MEHDI_HICHAM_CV.pdf";
                   document.body.appendChild(link);
                   link.click();
@@ -136,7 +136,7 @@ export const Hero = () => {
                   icon: Linkedin,
                   href: "https://www.linkedin.com/in/elmehdihicham",
                 },
-                { icon: Twitter, href: "https://github.com/MehdiHCH" },
+                { icon: Twitter, href: "https://x.com/Mehdi_Hch_____" },
               ].map((social, idx) => (
                 <a
                   key={idx}
@@ -160,7 +160,7 @@ export const Hero = () => {
               />
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
-                  src="{`${import.meta.env.BASE_URL}Me.jpeg`}"
+                  src={`${import.meta.env.BASE_URL}Me.jpeg`}
                   alt="EL MEHDI HICHAM"
                   className="w-full aspect-[4/5] object-cover rounded-2xl"
                 />

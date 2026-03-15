@@ -13,13 +13,7 @@ export const rosProject = {
   location: "Kenitra, Morocco",
   role: "Academic Project",
   overview: {
-    architecture: `flowchart LR
-    A1([LIDAR\\n720 rays]) --> B[Perception Layer\\nPoint Cloud Processing]
-    A2([RGB Camera]) --> B
-    B --> C[TD3 Agent\\nActor-Critic Networks]
-    C --> D[Control Layer\\nROS2 cmd_vel · 50Hz]
-    D --> E([Motor Actuators])
-    C <-.->|Reward Signal| F[Gazebo Simulation\\nPhysics Environment]`,
+    architectureImage: "assets/img/projects/architecture/ros_architecture.png",
     keyContributions: [
       "Architected a modular ROS2 distributed system with cleanly decoupled perception, decision, and control layers communicating over asynchronous pub/sub topics.",
       "Implemented a TD3 (Twin Delayed DDPG) reinforcement learning agent with actor and critic networks, trained over 1,000+ episodes of 500 steps each in Gazebo simulation.",
@@ -56,16 +50,9 @@ export const rosProject = {
     "Tested in diverse scenarios with reliable performance",
   ],
   techStack: [
-    "ROS2 Humble",
-    "Gazebo 11",
-    "PyTorch",
-    "Python 3.10",
-    "C++",
-    "Velodyne LIDAR",
-    "RGB Cameras",
-    "Rviz",
-    "TensorBoard",
-    "URDF/xacro",
+    "ROS2 Humble", "Gazebo 11", "PyTorch", "Python 3.10",
+    "C++", "Velodyne LIDAR", "RGB Cameras", "Rviz",
+    "TensorBoard", "URDF/xacro",
   ],
   modules: [
     {
@@ -120,11 +107,6 @@ export const rosProject = {
   },
   visualizations: [
     {
-      title: "RoboRangers Autonomous Vehicle",
-      description: "Complete autonomous vehicle platform with ROS2 and TD3 reinforcement learning",
-      image: "assets/img/projects/robo/roborangers.jpg",
-    },
-    {
       title: "Velodyne LIDAR Sensor Integration",
       description: "360° LIDAR point cloud processing for obstacle detection (720 rays per scan)",
       image: "assets/img/projects/robo/LiDAR.png",
@@ -137,32 +119,27 @@ export const rosProject = {
     {
       title: "TD3 Algorithm Architecture",
       description: "Twin Delayed DDPG reinforcement learning for continuous control",
-      image: "assets/img/projects/TD3.png",
+      image: "assets/img/projects/robo/TD3.png",
     },
   ],
   challenges: {
     drlIntegration: {
       problem: "Environmental difficulties with ROS2-Gazebo-TD3 integration",
       status: "Partially resolved",
-      solution:
-        "Module separation, independent unit tests, fallback control",
+      solution: "Module separation, independent unit tests, fallback control",
     },
     lidarProcessing: {
       problem: "High data volume (720 points @ 10Hz)",
-      solution:
-        "Intelligent downsampling (720→180), distance filtering, GPU processing",
+      solution: "Intelligent downsampling (720→180), distance filtering, GPU processing",
     },
     simToReal: {
       problem: "Simulation ≠ Reality (physics, sensors)",
-      solution:
-        "Domain randomization, sensor noise injection, sim2real transfer",
+      solution: "Domain randomization, sensor noise injection, sim2real transfer",
     },
   },
   team: [
-    "Alami Aroussi Zineb",
-    "Griche Mohammed Imrane",
-    "Hicham El Mehdi",
-    "Moutia Salma",
+    "Alami Aroussi Zineb", "Griche Mohammed Imrane",
+    "Hicham El Mehdi", "Moutia Salma",
   ],
   supervisor: "Pr. BOUKIR Khaoula",
   demos: [],
